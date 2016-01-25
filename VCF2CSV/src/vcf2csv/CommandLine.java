@@ -126,8 +126,11 @@ public class CommandLine {
      */
     private String setupDstByDirectory(String directory) {
         int fileNameIndex = VCF_FILE_PATH.lastIndexOf("/"); // that's on Linux
-        if (fileNameIndex == -1) { // that's on Windows
+        if (fileNameIndex == -1) { // that's on Windows -- possibly
             fileNameIndex = VCF_FILE_PATH.lastIndexOf("\\");
+        }
+        if (fileNameIndex == -1) { // means, the vcf file path doesn't include directories.
+            fileNameIndex = 0;
         }
         String output = directory + VCF_FILE_PATH.substring(fileNameIndex);
         return output.substring(0, output.length() - 3) + "csv";

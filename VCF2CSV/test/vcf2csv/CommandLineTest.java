@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
  */
 public class CommandLineTest {
     
+    public static final String[] arguments = new String[] {"convert", "src", "dst\\", "-r"};
+    
     public CommandLineTest() {
     }
     
@@ -43,12 +45,10 @@ public class CommandLineTest {
     @Test
     public void testGetVCFFilePath() {
         System.out.println("getVCFFilePath");
-        CommandLine instance = null;
-        String expResult = "";
+        CommandLine instance = new CommandLine(arguments);
+        String expResult = "src.vcf";
         String result = instance.getVCFFilePath();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +57,10 @@ public class CommandLineTest {
     @Test
     public void testGetCSVFilePath() {
         System.out.println("getCSVFilePath");
-        CommandLine instance = null;
-        String expResult = "";
+        CommandLine instance = new CommandLine(arguments);
+        String expResult = "dst\\src.csv";
         String result = instance.getCSVFilePath();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +69,10 @@ public class CommandLineTest {
     @Test
     public void testDoReverse() {
         System.out.println("doReverse");
-        CommandLine instance = null;
-        boolean expResult = false;
+        CommandLine instance = new CommandLine(arguments);
+        boolean expResult = true;
         boolean result = instance.doReverse();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,12 +81,10 @@ public class CommandLineTest {
     @Test
     public void testIsSet() {
         System.out.println("isSet");
-        CommandLine instance = null;
-        boolean expResult = false;
+        CommandLine instance = new CommandLine(arguments);
+        boolean expResult = true;
         boolean result = instance.isSet();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
