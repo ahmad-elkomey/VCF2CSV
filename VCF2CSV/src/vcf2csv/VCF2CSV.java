@@ -10,12 +10,13 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.net.QuotedPrintableCodec;
 
 /**
+ * The vcf to csv file converter. This class holds the logic and uses all other
+ * classes included to perform the conversion from the vcf file to csv file for
+ * Arabic data only.
  *
  * @author Ahmad
  */
@@ -104,19 +105,14 @@ public class VCF2CSV {
                 contact.addPhone(extractPhone(line));
             } else if (line.startsWith("END")) {
                 // now, that's the end of a record
-                String record = "";
                 try {
                     if (commandLine.doReverse()) {
                         csvFile.write(decoder.decode(contact.getFullNameReversed()) + ", ");
-                        record += decoder.decode(contact.getFullNameReversed())  + ", " ;
                     } else {
                         csvFile.write(decoder.decode(contact.getFullName()) + ", ");
-                        record += decoder.decode(contact.getFullName()) + ", ";
                     }
                     csvFile.write(String.join(",", contact.getPhones()));
                     csvFile.newLine();
-                    record += String.join(",", contact.getPhones()) + "\n";
-                    System.out.println(record);
                 } catch (IOException ex) {
                     System.out.println("Something went wrong while trying to "
                             + "write a record to the csv file!");
